@@ -45,11 +45,11 @@ export default new Vuex.Store({
             }
         },
         PRICEPOWER: function(state, id) {
-            if (state.applause >= state.tabPower[id].price && state.tabPower[id].price != "Achat effectué") {
+            if (state.applause >= state.tabPower[id].price && state.tabPower[id].price != "✔") {
                 state.applause -= state.tabPower[id].price;
                 state.countseconde += 3 * state.tabItem[id].counter;
                 state.tabItem[id].boostclic = state.tabItem[id].boostclic * 4;
-                state.tabPower[id].price = "Achat effectué";
+                state.tabPower[id].price = "✔";
             }
         },
         AUTOINCREMENT: function(state) {

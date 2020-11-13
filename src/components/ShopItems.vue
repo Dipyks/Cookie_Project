@@ -2,12 +2,18 @@
   <b-row>
     <b-col>
       <b-button v-on:click="buyClap(item.id)">
-          <b-img :src="require('../assets/dollar.png')"></b-img>
-          Acheter
+        <div class="item-button">
+          <div class="inner">
+            <b-img :src="require('../assets/'+(item.name).toLowerCase().replace(' ', '_')+'.png')"></b-img>
+          </div>
+          <div class="inner">
+            <p>{{format(item.price)}}</p>
+          </div>
+        </div>
         </b-button>
     </b-col>
     <b-col>
-      Acheter {{item.name}} pour {{format(item.price)}}
+      Acheter {{item.name}} pour 
     </b-col>
   </b-row>
 </template>
@@ -23,7 +29,7 @@ export default {
         },
         format: function(n){
             return numberFunction.formatNumber(n);
-        }
+        },
     },
     computed: {
         nbClap: function(){

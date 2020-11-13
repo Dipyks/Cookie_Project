@@ -4,7 +4,7 @@
             <div class="unitsItem">
                 <b-row>
                     <b-col col lg="2">
-                        <b-img class="imgUnitsItem" :src="require(`../assets/${item.img}`)"></b-img>
+                        <b-img class="imgUnitsItem" :src="require('../assets/'+(item.name).toLowerCase().replace(' ', '_')+'.png')"></b-img>
                     </b-col>
                     <b-col>
                         Vous avez {{item.nbItem}} {{item.name}} !

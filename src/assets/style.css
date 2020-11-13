@@ -11,6 +11,11 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.row {
+    align-items: center;
+    justify-content: center;
+}
+
 .col {
     flex-basis: 0;
     flex-grow: 1;
@@ -66,6 +71,7 @@ h1 {
 .list {
     max-height: 45vh;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .list .col {
@@ -76,10 +82,28 @@ h1 {
     float: left;
 }
 
+.list .btn {
+    width: 100px;
+}
+
+.list .btn .item-button {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.list .btn .item-button .inner {
+    width: 50%;
+}
+
 .list .btn img {
     width: 32px;
     height: 32px;
     float: left;
+}
+
+.list .btn p {
+    margin: 10px 0;
 }
 
 .unitsItem {
@@ -90,8 +114,4 @@ h1 {
     width: 64px;
     height: 64px;
     float: left;
-}
-
-.list .btn {
-    display: flex;
 }
