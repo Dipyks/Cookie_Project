@@ -1,10 +1,14 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
+//const Sqlite = require("nativescript-sqlite");
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        database: null,
+        data: [],
         applause: 0,
         clic: 1,
         priceClap: 5,
