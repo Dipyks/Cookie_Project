@@ -1,7 +1,7 @@
 <template>
   <div>
-    <ClickerCounter></ClickerCounter>
-    <ClickerUserAction></ClickerUserAction>
+    <ClickerCounter />
+    <ClickerUserAction />
   </div>
 </template>
 

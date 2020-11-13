@@ -1,8 +1,7 @@
 <template>
-  <div>
-    <div>
-      <p>Vous avez recu {{ applause }} applaudissements.</p>
-    </div>
+  <div class="clic">
+      <p>Moula par seconde : {{ countseconde }}</p>
+      <p>Vous avez {{ applause }} moula.</p>
   </div>
 </template>
 
@@ -12,6 +11,9 @@ export default {
     computed: {
         applause: function(){
             return this.$store.getters.applause;
+        },
+        countseconde: function(){
+          return this.$store.getters.countseconde;
         }
     }
 }

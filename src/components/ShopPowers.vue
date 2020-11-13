@@ -1,24 +1,21 @@
 <template>
-  <b-container>
-    <b-button v-on:click="buyClap">Supporter : {{priceClap}}</b-button>
-    Vous avez {{ nbClap }} supporter(s)!
-  </b-container>
+  <b-row>
+    <b-col>
+      <b-button v-on:click="buyPower(power.id)">{{power.price}}</b-button>
+    </b-col>
+    <b-col>
+      Ce pouvoir fait {{power.name}} !
+    </b-col>
+  </b-row>
 </template>
 
 <script>
 export default {
+    props: ["power"],
     methods: {
-        buyClap: function(){
-            return this.$store.dispatch("buyClap");
+        buyPower: function(id){
+            return this.$store.dispatch("buyPower", id);
         },
     },
-    computed: {
-        nbClap: function(){
-            return this.$store.getters.nbClap;
-        },
-        priceClap: function(){
-            return this.$store.getters.priceClap;
-        }
-    }
 }
 </script>
