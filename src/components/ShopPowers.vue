@@ -1,5 +1,5 @@
 <template>
-  <b-row>
+  <b-row align-h="center">
     <b-col>
       <b-button v-on:click="buyPower(power.id)">
         <div class="item-button">
@@ -7,7 +7,8 @@
             <b-img :src="require('../assets/pouvoir.png')"></b-img>
           </div>
           <div class="inner">
-            <p>{{power.price}}</p>
+            <p v-if="power.price > 0">{{format(power.price)}}</p>
+             <p v-else>✔</p>
           </div>
         </div>    
       </b-button>

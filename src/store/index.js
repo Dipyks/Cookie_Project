@@ -1,26 +1,28 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import {storageFunctions} from "../utility/storage";
+import { objects } from "../utility/objects";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        applause: 0,
-        clic: 1,
-        priceClap: 5,
-        nbClap: 0,
-        countseconde: 0,
-        tabItem: [
-            new Item(0, 5, "Action", 2, 0, 1.2, 0, "action.png"),
-            new Item(1, 50, "Entreprise", 10, 0, 1.3, 0, "office.png"),
-            new Item(2, 500, "Banque", 100, 0, 1.4, 0, "bank.png"),
-            new Item(3, 1000, "Clic x2", 0, 0, 1.8, 0, "click.png"),
-        ],
-        tabPower: [
-            new Power(0, 100, "Action x4", 4),
-            new Power(1, 500, "Entreprise x4", 4),
-            new Power(2, 10000, "Banque x4", 4),
-        ],
+        applause: storageFunctions.getStorage('applause'),
+        clic: storageFunctions.getStorage('clic',1),
+        priceClap: storageFunctions.getStorage('priceClap',5),
+        nbClap: storageFunctions.getStorage('nbClap'),
+        countseconde: storageFunctions.getStorage('countseconde'),
+        tabItem: storageFunctions.getStorageItem('tabItem',[
+            new objects.Item(0, 5, "Action", 2, 0, 1.2, 0, "action.png"),
+            new objects.Item(1, 50, "Entreprise", 10, 0, 1.3, 0, "office.png"),
+            new objects.Item(2, 500, "Banque", 100, 0, 1.4, 0, "bank.png"),
+            new objects.Item(3, 1000, "Clic x2", "aucun", 0, 2.5, 0, "click.png"),
+        ]),
+        tabPower: storageFunctions.getStoragePower('tabPower',[
+            new objects.Power(0, 100, "Action x4", 4),
+            new objects.Power(1, 500, "Entreprise x4", 4),
+            new objects.Power(2, 10000, "Banque x4", 4),
+        ]),
     },
     mutations: {
         APPLAUSE: function(state) {
@@ -41,16 +43,19 @@ export default new Vuex.Store({
                 state.tabItem[id].price *= state.tabItem[id].nextPrice;
                 state.tabItem[id].price = Math.round(state.tabItem[id].price);
                 state.tabItem[id].nbItem += 1;
-                state.tabItem[id].counter += state.tabItem[id].boostclic;
+                state.tabItem[id].counter += state.tabItem[id].boostclic;               
             }
+            localStorage.setItem('tabItem', JSON.stringify(state.tabItem));
         },
         PRICEPOWER: function(state, id) {
-            if (state.applause >= state.tabPower[id].price && state.tabPower[id].price != "✔") {
+            if (state.applause >= state.tabPower[id].price && state.tabPower[id].price != -1) {
                 state.applause -= state.tabPower[id].price;
                 state.countseconde += 3 * state.tabItem[id].counter;
                 state.tabItem[id].boostclic = state.tabItem[id].boostclic * 4;
-                state.tabPower[id].price = "✔";
+                state.tabPower[id].price = -1;
             }
+            localStorage.setItem('tabItem', JSON.stringify(state.tabItem));
+            localStorage.setItem('tabPower', JSON.stringify(state.tabPower));
         },
         AUTOINCREMENT: function(state) {
             state.applause += state.countseconde;
@@ -74,16 +79,24 @@ export default new Vuex.Store({
         },
     },
     getters: {
-        applause: function(state) {
+        applause: function(state) {  
+            localStorage.setItem('applause', state.applause);
             return state.applause;
         },
+        clic: function(state) {  
+            localStorage.setItem('clic', state.clic);
+            return state.clic;
+        },      
         priceClap: function(state) {
+            localStorage.setItem('priceClap', state.priceClap);
             return state.priceClap;
         },
         nbClap: function(state) {
+            localStorage.setItem('nbClap', state.nbClap);
             return state.nbClap;
         },
         countseconde: function(state) {
+            localStorage.setItem('countseconde', state.countseconde);
             return state.countseconde;
         },
         tabItem: function(state) {
@@ -94,21 +107,3 @@ export default new Vuex.Store({
         }
     }
 })
-
-function Item(id, price, name, boostclic, nbItem, nextPrice, counter, img) {
-    this.id = id;
-    this.price = price;
-    this.name = name;
-    this.boostclic = boostclic;
-    this.nbItem = nbItem;
-    this.nextPrice = nextPrice;
-    this.counter = counter;
-    this.img = img;
-}
-
-function Power(id, price, name, boostPower) {
-    this.id = id;
-    this.price = price;
-    this.name = name;
-    this.boostPower = boostPower;
-}

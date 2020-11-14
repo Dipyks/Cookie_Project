@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>Moulas</h2>
     <ClickerCounter />
     <ClickerUserAction />
   </div>

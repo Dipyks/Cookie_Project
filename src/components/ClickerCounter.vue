@@ -1,11 +1,13 @@
 <template>
   <div class="clic">
-      <p>Moula par seconde : {{ countseconde }}</p>
-      <p>Vous avez {{ applause }} moula.</p>
+      <p>Moula par seconde : {{ format(countseconde) }}</p>
+      <p>Vous avez {{ format(applause) }} moula.</p>
   </div>
 </template>
 
 <script>
+import { numberFunction } from "../utility/number";
+
 export default {
     name: "ClickerCounter",
     computed: {
@@ -14,7 +16,12 @@ export default {
         },
         countseconde: function(){
           return this.$store.getters.countseconde;
-        }
+        },
+    },
+    methods: {
+        format: function(n){
+            return numberFunction.formatNumber(n);
+        },
     }
 }
 </script>

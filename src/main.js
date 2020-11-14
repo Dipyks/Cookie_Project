@@ -1,12 +1,11 @@
 import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
+import App from './views/App.vue'
 import store from "./store"
 import BootstrapVue from "bootstrap-vue"
 import VueMoment from "vue-moment"
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+import router from './router/index'
 
 Vue.config.productionTip = false
 

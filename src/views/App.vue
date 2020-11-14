@@ -1,5 +1,9 @@
 <template>
-  <div id="app"> <h1>Gangst'eirb Clicker</h1> 
+  <div id="app"> 
+    <div class="topbar">
+      <h1>Gangst'eirb Clicker</h1> 
+      <b-button v-on:click="refreshStorage()">Restart</b-button>
+    </div>
     <b-row>
       <b-col class="col1">
         <Clicker></Clicker>
@@ -16,9 +20,9 @@
 
 
 <script>
-import Clicker from "./components/Clicker";
-import Units from "./components/Units";
-import Shop from "./components/Shop";
+import Clicker from "../components/Clicker";
+import Units from "../components/Units";
+import Shop from "../components/Shop";
 
 export default {
   components: {
@@ -31,7 +35,11 @@ export default {
       setInterval(() => {
         this.$store.dispatch('AutoIncrement');
       }, 1000);
-    }
+    },
+    refreshStorage: function(){
+        localStorage.clear();
+        document.location.reload(true);
+    },
   },
   created: function(){
     this.AutoIncrement();
@@ -41,5 +49,5 @@ export default {
 </script>
 
 <style>
-  @import './assets/style.css';
+  @import '../assets/style.css';
 </style>

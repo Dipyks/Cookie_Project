@@ -6,7 +6,7 @@
   </div>
       <hr>
   <div class="list item-list">
-    <h2>Item</h2>
+    <h2>Items</h2>
       <ShopItems v-for='item in items' :key='item.id' v-bind:item='item'></ShopItems>
   </div>
 </div>

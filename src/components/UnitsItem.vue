@@ -11,16 +11,9 @@
                     </b-col>
                 </b-row>
                 <p class="item">
-                    (Cet item rapporte {{item.boostclic}} MPS.)
+                    (Un item rapporte {{item.boostclic}} MPS.)
                 </p>
             </div>
-            <!-- <p>
-                <b-img class="imgUnitsItem" :src="require(`../assets/${item.img}`)"></b-img>
-                Vous avez {{item.nbItem}} {{item.name}} !
-            </p>
-            <p class="item">
-                (Cet item rapporte {{item.boostclic}} MPS.)
-            </p> -->
         </b-row>
     </b-container>
 </template>

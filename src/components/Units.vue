@@ -1,13 +1,8 @@
 <template>
     <div>
+        <h2>Patrimoine</h2>
         <b-row>
             <UnitsItem v-for='item in items' :key='item.id' v-bind:item='item'></UnitsItem>
-        </b-row>
-        <b-row>
-
-        </b-row>
-        <b-row>
-
         </b-row>
     </div>
 </template>
